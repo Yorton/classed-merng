@@ -10,10 +10,10 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-app.use(express.static('./client/public'));
+app.use(express.static('public'));
 app.get('*', (req, res) => {
 
-    res.sendFile(path.resolve(__dirname, './client/public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
 const pubsub = new PubSub();
@@ -41,7 +41,7 @@ mongoose.connect(MONGODB, {useNewUrlParser: true})
 
     console.log('PORT = '+ PORT);
 
-    return app.listen(PORT, ()=>{console.log('Server started on port ${PORT}')});
+    return app.listen(PORT, ()=>{console.log(`Server started on port ${PORT}`)});
 })
 .then(res => {
     console.log(`Server running at ${res.url}`);
