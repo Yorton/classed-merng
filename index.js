@@ -6,6 +6,7 @@ const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const {MONGODB} = require('./config');
 
+const path = require('path');
 const express = require('express');
 const app = express();
 
