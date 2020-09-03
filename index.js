@@ -39,7 +39,9 @@ mongoose.connect(MONGODB, {useNewUrlParser: true})
     //     console.log(`Server ready at http://localhost:${PORT}`);
     // });
 
-    return app.listen(5000, ()=>{console.log('Server started on port 5000')});
+    console.log('PORT = '+ PORT);
+
+    return app.listen(PORT, ()=>{console.log('Server started on port ${PORT}')});
 })
 .then(res => {
     console.log(`Server running at ${res.url}`);
