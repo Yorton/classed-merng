@@ -7,7 +7,8 @@
     "server": "node index",
     "start": "node index",
     "client": "npm start --prefix client",
-    "debug": "nodemon --inspect index.js"
+    "debug": "nodemon --inspect index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "apollo-server": "^2.16.1",
     "apollo-server-express": "^2.17.0",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
     "jsonwebtoken": "^8.5.1",
