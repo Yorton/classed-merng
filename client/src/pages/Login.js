@@ -18,16 +18,23 @@ function Login(props){
     });
 
     const [loginUser, {loading}] = useMutation(LOGIN_USER,{
-        
-        //update(_, result){//update(proxy, result)
-        update(_, {data: {login: userData}}){
-            
-            //console.log(result.data.login);
-            //context.login(result.data.login);
-            context.login(userData);
 
+        update(_, result){//update(proxy, result)
+         
+            console.log("login", result.data.login);
+
+            context.login(result.data.login);
+        
             props.history.push('/'); //redirect to home page
         },
+        
+ 
+        // update(_, {data: {login: userData}}){//update(proxy, result)
+
+        //     context.login(userData);
+
+        //     props.history.push('/'); //redirect to home page
+        // },
         onError(err){
             //console.log(err.graphQLErrors[0].extensions.errors);
             setErrors(err.graphQLErrors[0].extensions.errors);

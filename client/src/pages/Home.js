@@ -58,18 +58,22 @@ const {
                     (
                         <Transition.Group>
                             {
+                               console.log("home", data)
                                 
+                               (
                                 data && data.getPosts && data.getPosts.map(post => (
                                 //posts && posts.map(post => (
                                 <Grid.Column key={post.id} style={{marginBottom: 20}}>
                                     <PostCard post={post} props={props} />
                                 </Grid.Column>
                                 ))
+                               )
                             }
                         </Transition.Group>
                     )
                 }
 
+                
             </Grid.Row>
         </Grid>
        // )
