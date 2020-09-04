@@ -11,9 +11,9 @@ const {MONGODB} = require('./config');
 const path = require('path');
 const express = require('express');
 const app = express();
-const cors = require('cors');
+//const cors = require('cors');
 
-app.use(cors());
+//app.use(cors());
 
 
 const pubsub = new PubSub();
@@ -36,11 +36,11 @@ app.get('*', (req, res) => {
 
 server.applyMiddleware({
     //path: '/my-frontend', // you should change this to whatever you want
-    app,
-    cors: {
-        credentials: true,
-        origin: 'http://localhost:3000'
-    }
+    app//,
+    // cors: {
+    //     credentials: true,
+    //     origin: 'http://localhost:3000'
+    // }
 });
 
 
@@ -50,9 +50,7 @@ mongoose.connect(MONGODB, {useNewUrlParser: true})
 .then(() => {
     console.log('MongoDB Connected');
 
-    console.log('PORT = '+ PORT);
-
-    //return app.listen({port:PORT});
+    //return server.listen({port:PORT});
 
     return app.listen(PORT, ()=>{console.log(`Server started on port ${PORT} graphqlPath ${server.graphqlPath}`)});
 })
