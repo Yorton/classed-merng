@@ -6,17 +6,15 @@ const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const {MONGODB} = require('./config');
 
+//const bodyParser = require('body-parser');
+
 const path = require('path');
 const express = require('express');
 const app = express();
 const cors = require('cors');
 
 app.use(cors());
-app.use(express.static('public'));
-app.get('*', (req, res) => {
 
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-});
 
 const pubsub = new PubSub();
 
@@ -28,10 +26,22 @@ const server = new ApolloServer({
     context: ({req}) => ({req, pubsub})
 });
 
+
+
 server.applyMiddleware({
     //path: '/my-frontend', // you should change this to whatever you want
-    app//,
+    app,
+    cors: {
+        credentials: true,
+        origin: 'http://localhost:3000'
+    }
 });
+
+// app.use(express.static('public'));
+// app.get('*', (req, res) => {
+
+//     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+// });
 
 
 mongoose.connect(MONGODB, {useNewUrlParser: true})
@@ -40,9 +50,9 @@ mongoose.connect(MONGODB, {useNewUrlParser: true})
 
     console.log('PORT = '+ PORT);
 
-    return app.listen({port:PORT});
+    //return app.listen({port:PORT});
 
-    //return app.listen(PORT, ()=>{console.log(`Server started on port ${PORT}`)});
+    return app.listen(PORT, ()=>{console.log(`Server started on port ${PORT}`)});
 })
 .then(res => {
     console.log(`Server running at ${res.url}`);
