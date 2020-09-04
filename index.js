@@ -37,9 +37,10 @@ server.applyMiddleware({
 mongoose.connect(MONGODB, {useNewUrlParser: true})
 .then(() => {
     console.log('MongoDB Connected');
-    return app.listen({port:PORT});
 
-    //console.log('PORT = '+ PORT);
+    console.log('PORT = '+ PORT);
+
+    return app.listen({port:PORT});
 
     //return app.listen(PORT, ()=>{console.log(`Server started on port ${PORT}`)});
 })
