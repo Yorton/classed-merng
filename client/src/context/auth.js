@@ -15,17 +15,18 @@ if (localStorage.getItem('jwtToken')){
     }
 }
 
-const token = localStorage.getItem('jwtToken');
-console.log("auth token", token);
+//const token = localStorage.getItem('jwtToken');
+//console.log("auth token", token);
 
 const AuthContext = createContext({
     user: null,
     login: (userData) => {},
-    logout: () => {},
-
-    headers: {
-        Authorization: token ? `Bearer ${token}` : ''
-    }
+    logout: () => {}
+    
+    // ,
+    // headers: {
+    //     Authorization: token ? `Bearer ${token}` : ''
+    // }
 });
 
 function authReducer(state, action){
