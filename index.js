@@ -27,6 +27,12 @@ const server = new ApolloServer({
 });
 
 
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
 
 server.applyMiddleware({
     //path: '/my-frontend', // you should change this to whatever you want
@@ -37,11 +43,7 @@ server.applyMiddleware({
     }
 });
 
-// app.use(express.static('public'));
-// app.get('*', (req, res) => {
 
-//     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-// });
 
 
 mongoose.connect(MONGODB, {useNewUrlParser: true})
@@ -52,7 +54,7 @@ mongoose.connect(MONGODB, {useNewUrlParser: true})
 
     //return app.listen({port:PORT});
 
-    return app.listen(PORT, ()=>{console.log(`Server started on port ${PORT}`)});
+    return app.listen(PORT, ()=>{console.log(`Server started on port ${PORT} graphqlPath ${server.graphqlPath}`)});
 })
 .then(res => {
     console.log(`Server running at ${res.url}`);
