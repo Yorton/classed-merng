@@ -15,17 +15,17 @@ import {FETCH_POSTS_QUERY} from '../util/graphql';
     const {user} = useContext(AuthContext);
 
 //without = {} getPosts would be undefined
-   const {
-            loading, 
-            data: {getPosts: posts} = {}
-         } = useQuery(FETCH_POSTS_QUERY);
+//    const {
+//             loading, 
+//             data: {getPosts: posts} = {}
+//          } = useQuery(FETCH_POSTS_QUERY);
 
-         console.log("home post",posts);
+//          console.log("home post",posts);
 
-// const {
-//     loading, 
-//     data
-//  } = useQuery(FETCH_POSTS_QUERY);
+const {
+    loading, 
+    data
+ } = useQuery(FETCH_POSTS_QUERY);
 
 
     return (
@@ -59,8 +59,8 @@ import {FETCH_POSTS_QUERY} from '../util/graphql';
                         <Transition.Group>
                             {
                                 
-                                //data.getPosts && data.getPosts.map(post => (
-                                posts && posts.map(post => (
+                                data && data.getPosts && data.getPosts.map(post => (
+                                //posts && posts.map(post => (
                                 <Grid.Column key={post.id} style={{marginBottom: 20}}>
                                     <PostCard post={post} props={props} />
                                 </Grid.Column>
